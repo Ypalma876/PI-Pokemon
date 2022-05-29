@@ -1,4 +1,4 @@
-const { Pokemon } = require('../db');
+const { Pokemon } = require('../../db');
 
 
 // get pokemons list from API
