@@ -82,12 +82,13 @@ const getPokemonByID = async (id) => {
         const pokemonByID = pokemonList.find(p => p.id === id);
         return pokemonByID;
     } catch (error) {
-        console.log(error)
+        throw new Error(error)
     }
 }
 
 module.exports = {
     getDataApi,
     getDataDB,
-    allPokemons
+    allPokemons,
+    getPokemonByID
 }
