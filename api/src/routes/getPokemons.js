@@ -63,17 +63,27 @@ const getDataDB = async () => {
 const allPokemons = async () => {
     try {
         const pokemonsApi = await getDataApi();
-    const pokemonsBD = await getDataDB();
+        const pokemonsBD = await getDataDB();
 
-    const totalPokemons = [...pokemonsApi, ...pokemonsBD];
+        const totalPokemons = [...pokemonsApi, ...pokemonsBD];
 
-    console.log('All pokemons together')
+        console.log('All pokemons together')
 
-    return totalPokemons;
+        return totalPokemons;
     } catch (error) {
         console.log(error)
     }
     
+}
+
+const getPokemonByID = async (id) => {
+    try {
+        const pokemonList = await allPokemons();
+        const pokemonByID = pokemonList.find(p => p.id === id);
+        return pokemonByID;
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 module.exports = {
