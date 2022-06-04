@@ -28,7 +28,7 @@ const getDataApi = async () => {
             return pokemons;
             
     } catch (error) {
-        console.log(error)
+        throw new Error(error)
     }
 }
 
@@ -56,7 +56,7 @@ const getDataDB = async () => {
         return pokemons;      
 
     } catch (error) {
-        console.log(error)
+        throw new Error(error)
     }
 }
 
@@ -71,7 +71,7 @@ const allPokemons = async () => {
 
         return totalPokemons;
     } catch (error) {
-        console.log(error)
+        throw new Error(error)
     }
     
 }
