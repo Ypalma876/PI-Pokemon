@@ -32,6 +32,7 @@ const getDataApi = async () => {
     }
 }
 
+//Get pokemons in DB
 const getDataDB = async () => {
     try {
         const pokemonsDB = await Pokemon.findAll();
@@ -60,6 +61,7 @@ const getDataDB = async () => {
     }
 }
 
+// Join pokemons in DB and API
 const allPokemons = async () => {
     try {
         const pokemonsApi = await getDataApi();
@@ -76,6 +78,7 @@ const allPokemons = async () => {
     
 }
 
+// Search pokemon by ID
 const getPokemonByID = async (id) => {
     try {
         const pokemonList = await allPokemons();
