@@ -3,6 +3,7 @@ import React from 'react';
 import { Route, Routes } from "react-router-dom";
 import LP from './components/LandingPg/LandingPg.jsx';
 import Home from './components/Home.jsx';
+import Nav from './components/Nav/Nav';
 
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
       <div>
         <Routes>
           <Route exact path="/" element={<LP />} />
+          <Route path='/pokemons' element={<Nav />} />
         </Routes>
     </div>
   );
