@@ -1,31 +1,37 @@
-const { Pokemon } = require('../../db');
-
+const { Pokemon, Type } = require('../../db');
+const axios = require('axios')
 
 // get pokemons list from API
 
 const getDataApi = async () => {
     try {
-            const pokemons = [];
-            for (let i = 1; i <= 40; i++) {
-                      let pokeDataApi = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
-                      let pokemonApi = await pokeDataApi.json()
-                  
-                        pokemons.push({
-                          img: pokemonApi.sprites.other.dream_world.front_default,
-                          name: pokemonApi.name,
-                          types: pokemonApi.types.map((t) => t.type.name),
-                          id: pokemonApi.id,
-                          hp: pokemonApi.stats[0].base_stat,
-                          strenght: pokemonApi.stats[1].base_stat,
-                          defense: pokemonApi.stats[2].base_stat,
-                          speed: pokemonApi.stats[5].base_stat,
-                          height: pokemonApi.height,
-                          weight: pokemonApi.weight
-                        }) 
-                     
-                  }
-            //console.log(pokemons)
-            return pokemons;
+
+        // traigo la info de la api
+        const apiUrl = await axios.get('https://pokeapi.co/api/v2/pokemon?offset=0&limit=40')
+
+        // para cada pokemon hago el requerimiento a la api del detalle del mismo
+        let pokemons = await Promise.all(
+            apiUrl.data.results.map(async (e) => {
+                if (e.url) {
+                    const pokemonInfo = await axios.get(`${e.url}`)
+                    const pokemon = await pokemonInfo.data
+                    return {
+                        id: pokemon.id,
+                        name: pokemon.name,
+                        types: pokemon.types.map(e => e.type.name),
+                        hp: pokemon.stats[0].base_stat,
+                        attack: pokemon.stats[1].base_stat,
+                        defense: pokemon.stats[2].base_stat,
+                        speed: pokemon.stats[5].base_stat,
+                        height: pokemon.height,
+                        weight: pokemon.weight,
+                        image: `${pokemon.sprites.other.dream_world.front_default}`
+                    } 
+                }
+            })
+        ) 
+
+        return pokemons
             
     } catch (error) {
         throw new Error(error)
@@ -35,22 +41,16 @@ const getDataApi = async () => {
 //Get pokemons in DB
 const getDataDB = async () => {
     try {
-        const pokemonsDB = await Pokemon.findAll();
-        const pokeData = pokemonsDB.json();
-
-        const pokemons = pokeData.map( p => {
-            return {
-                id: pokeData.ID,
-                name: pokeData.name,
-                hp: pokeData.life,
-                strenght: pokeData.strenght,
-                defense: pokeData.defense,
-                speed: pokeData.speed,
-                height: pokeData.height,
-                weight: pokeData.weight,
-                img: pokeData.image
+        const pokemonsDB = await Pokemon.findAll( {
+            include: {
+                model: Type,
+                attributes: [ 'name' ],
+                through: {
+                    attributes: []
+                }
             }
-        })
+        });
+        const pokemons = pokemonsDB;
         
         //console.log('listo')
 
@@ -67,7 +67,7 @@ const allPokemons = async () => {
         const pokemonsApi = await getDataApi();
         const pokemonsBD = await getDataDB();
 
-        const totalPokemons = [...pokemonsApi, ...pokemonsBD];
+        const totalPokemons = pokemonsApi.concat(pokemonsBD);
 
         console.log('All pokemons together')
 
@@ -82,8 +82,11 @@ const allPokemons = async () => {
 const getPokemonByID = async (id) => {
     try {
         const pokemonList = await allPokemons();
-        const pokemonByID = pokemonList.find(p => p.id === id);
-        return pokemonByID;
+
+        if (id) {
+            const pokemonByID = pokemonList.filter(p => p.id === id);
+            return pokemonByID;
+        }
     } catch (error) {
         throw new Error(error)
     }

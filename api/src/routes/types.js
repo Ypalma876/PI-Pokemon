@@ -1,22 +1,17 @@
-const { Type } = require("../db.js");
+const { Router } = require("express");
+const getTypes = require("./utils/getTypes.js");
 
-/////////////////////GET TYPES ///////////////////////////////////
+const router = Router();
 
-const getTypes = async (req, res) => {
-  const typesDB = await Type.findAll();
+router.get('/', async (req, res) => {
+  try {
 
-    if(typesDB.length === 0) {
-        try {
-            const typesApi = await fetch('https://pokeapi.co/api/v2/type')
-            const types = await typesApi.json()
-            for(let i=0; i<types.data.results.length; i++){
-                await Type.create({name: types.data.results[i].name});
-            }
-         } catch(error) {
-           return res.status(404).send('Ha ocurrido un error')
-         }
-        } else {
-            return res.status(200).json(typesDB);
-        }
-}
-module.exports = getTypes;
+    const listTypes = await getTypes();
+    res.status(200).send(listTypes);
+
+  } catch (error) {
+    res.status(404).send({ error: error.message });
+  }
+})
+
+module.exports = router;

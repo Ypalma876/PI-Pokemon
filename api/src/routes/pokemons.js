@@ -12,12 +12,12 @@ router.get('/', async (req, res) => {
         const listPokemons = await allPokemons();
         if (!name) {
             res.status(200).send(listPokemons);
-            console.log(listPokemons)
+            
         } else {
             // no utilizo el where porque todos los pokemones no están solo en la DB
             const pokemon = listPokemons.filter(e => e.name.toLowerCase().includes(name.toLowerCase()));
-            if (Object.keys(pokemon).length === 0) res.status(404).send('The entered pokemon does not exist')
-            res.status(200).send(pokemon)
+            if (pokemon.name.length === 0) res.status(404).send('The entered pokemon does not exist');
+            res.status(200).send(pokemon);
         }
 
     } catch (error) {
@@ -28,57 +28,48 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
     const { id } = req.params;
 
-    try {
-        const pokemonByID = await getPokemonByID(id);
-        res.status(200).send(pokemonByID)
-    } catch (error) {
-        res.status(404).send({ error: error.message });
-    } 
+    const pokemonByID = await getPokemonByID(id);
+    pokemonByID.length?
+    res.status(200).send(pokemonByID) :
+    res.status(404).send('Pokemon does not exist')
 })
 
 router.post('/', async (req, res) => {
-    const { 
-        name, 
-        life, 
-        strenght, 
-        defense, 
-        speed, 
-        height, 
-        weight, 
+    let {
+        name,
+        types,
+        hp,
+        attack,
+        defense,
+        speed,
+        height,
+        weight,
         image,
-        types } = req.body;
-
-    if (!name) return res.status(404).send('Debe introducir un nombre');
-
+        createdInDB
+       } = req.body
+       
     try {
-        // creo el pokemon
-        const pokemon = await Pokemon.create(
-            name,
-            life,
-            strenght,
-            defense,
-            speed,
-            height,
-            weight,
-            image
-        );
-
-        // busco el tipo en la DB
-        let typeDB = await Type.findAll({
-            where: {
-                name: {
-                    [Op.in]: types
-                }    
-            }
-        })
-
-        //agrego los tipos al pokemon creado
-        await pokemon.addType(typeDB);
-
-        res.status(201).send('Pokemon created successfully');
-    } catch (error) {
-        res.status(404).send({ error: error.message });
-    }
+       let pokemonCreated = await Pokemon.create ({
+           name,
+           hp,
+           attack,
+           defense,
+           speed,
+           height,
+           weight,
+           image,
+           createdInDB
+       })
+   
+       let typesDB = await Type.findAll({  where: { name : types } })
+       
+       pokemonCreated.addType(typesDB)
+       res.send('pokemon creado')
+   
+   
+   } catch (error){
+       res.status(400).json({ error: error})
+   }
 })
 
 module.exports = router;
