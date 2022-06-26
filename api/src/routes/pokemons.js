@@ -6,22 +6,17 @@ const { Op } = require('sequelize');
 const router = Router();
 
 router.get('/', async (req, res) => {
-    const { name } = req.query;
 
-    try {
-        const listPokemons = await allPokemons();
-        if (!name) {
-            res.status(200).send(listPokemons);
-            
-        } else {
-            // no utilizo el where porque todos los pokemones no están solo en la DB
-            const pokemon = listPokemons.filter(e => e.name.toLowerCase().includes(name.toLowerCase()));
-            if (pokemon.name.length === 0) res.status(404).send('The entered pokemon does not exist');
-            res.status(200).send(pokemon);
-        }
-
-    } catch (error) {
-        res.status(404).send({ error: error.message });
+    const name = req.query.name
+    let pokemonsTotales = await allPokemons()
+    if (name) {
+        console.log(pokemonsTotales)
+        let pokemonName =  await pokemonsTotales.filter(e => e.name.toLowerCase()===(name.toLowerCase()))
+        pokemonName.length ?
+        res.status(200).send(pokemonName) :
+        res.status(404).send('This pokemon does not exist')
+    } else {
+        res.status(200).send(pokemonsTotales)
     }
 })
 
@@ -64,7 +59,7 @@ router.post('/', async (req, res) => {
        let typesDB = await Type.findAll({  where: { name : types } })
        
        pokemonCreated.addType(typesDB)
-       res.send('pokemon creado')
+       res.send('pokemon created successfully')
    
    
    } catch (error){

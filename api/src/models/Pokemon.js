@@ -15,9 +15,9 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     life: {
-      type: DataTypes.INTEGER
+      type: DataTypes.INTEGER 
     },
-    strenght: { 
+    attack: { 
       type: DataTypes.INTEGER
     },
     defense: {
@@ -27,7 +27,7 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER
     },
     height: {
-      type: DataTypes.INTEGER
+      type: DataTypes.INTEGER 
     },
     weight: {
       type: DataTypes.INTEGER

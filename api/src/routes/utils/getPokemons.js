@@ -4,38 +4,30 @@ const axios = require('axios')
 // get pokemons list from API
 
 const getDataApi = async () => {
-    try {
+    const apiUrl = await axios.get('https://pokeapi.co/api/v2/pokemon?offset=0&limit=40')
+    const apiInfo = await apiUrl.data.results
+    let pokemons = await Promise.all (
 
-        // traigo la info de la api
-        const apiUrl = await axios.get('https://pokeapi.co/api/v2/pokemon?offset=0&limit=40')
-
-        // para cada pokemon hago el requerimiento a la api del detalle del mismo
-        let pokemons = await Promise.all(
-            apiUrl.data.results.map(async (e) => {
-                if (e.url) {
-                    const pokemonInfo = await axios.get(`${e.url}`)
-                    const pokemon = await pokemonInfo.data
-                    return {
-                        id: pokemon.id,
-                        name: pokemon.name,
-                        types: pokemon.types.map(e => e.type.name),
-                        hp: pokemon.stats[0].base_stat,
-                        attack: pokemon.stats[1].base_stat,
-                        defense: pokemon.stats[2].base_stat,
-                        speed: pokemon.stats[5].base_stat,
-                        height: pokemon.height,
-                        weight: pokemon.weight,
-                        image: `${pokemon.sprites.other.dream_world.front_default}`
-                    } 
-                }
-            })
-        ) 
-
-        return pokemons
-            
-    } catch (error) {
-        throw new Error(error)
-    }
+     apiInfo.map(async (e) => {
+            if (e.url) {
+                const pokemonInfo = await axios.get(`${e.url}`)
+                const pokemon = await pokemonInfo.data
+                return {
+                    id: pokemon.id,
+                    name: pokemon.name,
+                    types: pokemon.types.map(e => e.type.name),
+                    hp: pokemon.stats[0].base_stat,
+                    attack: pokemon.stats[1].base_stat,
+                    defense: pokemon.stats[2].base_stat,
+                    speed: pokemon.stats[5].base_stat,
+                    height: pokemon.height,
+                    weight: pokemon.weight,
+                    image: pokemon.sprites.other.dream_world.front_default
+                }  
+            }
+        })
+    )    
+    return pokemons
 }
 
 //Get pokemons in DB
