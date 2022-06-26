@@ -31,6 +31,24 @@ export function getNamePokemons (name) {
     }
 }
 
+export function getTypes () {
+    return async function (dispatch) {
+        let json = axios.get('http://localhost:3001/types')
+
+        return dispatch ({
+            type: 'GET_TYPES',
+            payload: json.data
+        })
+    }
+}
+
+export function postPokemon (payload) {
+    return async function (dispatch) {
+        let json = axios.post('http://localhost:3001/pokemons', payload)
+        return json;
+    }
+}
+
 export function filterPokemonsByTypes (payload) {
     return {
         type: 'FILTER_BY_TYPE',
