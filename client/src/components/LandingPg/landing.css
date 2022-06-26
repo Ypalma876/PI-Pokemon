@@ -22,15 +22,21 @@
     color: #CC0000;
     transition: 0.5s;
     background:none;
+    animation: blinker 1.5s linear infinite;
 }
+
+@keyframes blinker {
+    50% {
+      opacity: 0;
+    }
+  }
 
 .container button:hover {
     background-color: #CC0000;
+    animation: none;
     color: aliceblue;
-    box-shadow: 0 0 5px #CC0000,
-                0 0 25px #CC0000,
-                0 0 50px #CC0000,
-                0 0 200px #CC0000;
-    -webkit-box-reflect: below 1px linear-
-    gradient(transparent, #0005);
+    box-shadow: 0 0 35px #e76b6b,
+                0 0 25px #e76b6b,
+                0 0 35px #e76b6b,
+                0 0 25px #e76b6b;
 }
