@@ -2,7 +2,7 @@ import './App.css';
 import React from 'react';
 import { Route, Routes } from "react-router-dom";
 import LP from './components/LandingPg/LandingPg.jsx';
-import Nav from './components/Nav/Nav';
+import Home from './components/Home/Home.jsx'
 
 
 function App() {
@@ -10,8 +10,7 @@ function App() {
       <div>
         <Routes>
           <Route exact path="/" element={<LP />} />
-          <Route path='/pokemons' element={<Nav />} />
-          
+          <Route path='/home' element = { <Home />} />
         </Routes>
     </div>
   );
