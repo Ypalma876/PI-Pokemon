@@ -13,7 +13,7 @@ const Paging = ({ pokemonsXPg, allPokemons, paging }) => {
                 {
                     pageNums && pageNums.map(num => {
                         <li key={num}>
-                            <button onClick={() => paging(num)}>{num}</button>
+                            <a onClick={() => paging(num)}>{num}</a>
                         </li>  
                     })
                 }

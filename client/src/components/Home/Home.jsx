@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import Card from "../Card/Card.jsx";
 import Paging from "../Paging/Paging.jsx";
 import SearchBar from "../SearchBar/SearchBar.jsx";
+import './home.css'
 
 export default function Home () {
 
@@ -52,61 +53,79 @@ export default function Home () {
     }
 
     return (
-        <div>
-            <Link to='/pokemon'>Create Pokemon</Link>
-            <h1>Pokemon!</h1>
-            <button onClick={e => {handleClick(e)}}>
-                Show all pokemons
-            </button>
-            <div>
-                <select onChange={e => handleSortName(e)}>
-                    <option defaultValue>Name</option>
-                    <option value="asc">Ascending</option>
-                    <option value="desc">Descending</option>
-                </select>
-                <select onChange={e => handleFilterTypes(e)}>
-                    <option defaultValue>Types</option>
-                    <option value="all">all types</option>
-                    <option value="normal">normal</option>
-                    <option value="fighting">fighting</option>
-                    <option value="flying">flying</option>
-                    <option value="poison">poison</option>
-                    <option value="ground">ground</option>
-                    <option value="rock">rock</option>
-                    <option value="bug">bug</option>
-                    <option value="ghost">ghost</option>
-                    <option value="steel">steel</option>
-                    <option value="fire">fire</option>
-                    <option value="water">water</option>
-                    <option value="grass">grass</option>
-                    <option value="electric">electric</option>
-                    <option value="psychic">psychic</option>
-                    <option value="ice">ice</option>
-                    <option value="dragon">dragon</option>
-                    <option value="dark">dark</option>
-                    <option value="fairy">fairy</option>
-                    <option value="shadow">shadow</option>
-                    <option value="unknown">unknown</option>
-                </select>
-                <select onChange={e => handleSortStrength(e)}>
-                    <option defaultValue>Attack</option>
-                    <option value="high">Higher attack</option>
-                    <option value="low">Lower attack</option>
-                </select>
-                <select onChange={e => handleFilterOrigin(e)}>
-                    <option defaultValue>Origin</option>
-                    <option value="all">All</option>
-                    <option value="api">From API</option>
-                    <option value="cre">Created</option>
-                </select>
+        <div className="home">
+            <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/87044f58-c765-43c5-bc51-8613e3ac7ab1/ddew4m7-c69a2c41-518f-48ca-ba35-8ab1895464e0.png" alt="Pokemon!" />
+
+            <div className="search-bar">
+                <button onClick={e => {handleClick(e)}}>
+                    Show all pokemons
+                </button>
+                <SearchBar />
+                <Link to='/pokemon'>
+                <button>Create Pokemon</button>
+                </Link>
+            </div>
+            
+            <div className="filter-container">
+
+                <div className="filter">
+                    <select onChange={e => handleSortName(e)}>
+                        <option defaultValue>Name</option>
+                        <option value="asc">Ascending</option>
+                        <option value="desc">Descending</option>
+                    </select>
+                </div>
+                
+                <div className="filter">
+                    <select onChange={e => handleFilterTypes(e)}>
+                        <option defaultValue>Types</option>
+                        <option value="all">all types</option>
+                        <option value="normal">normal</option>
+                        <option value="fighting">fighting</option>
+                        <option value="flying">flying</option>
+                        <option value="poison">poison</option>
+                        <option value="ground">ground</option>
+                        <option value="rock">rock</option>
+                        <option value="bug">bug</option>
+                        <option value="ghost">ghost</option>
+                        <option value="steel">steel</option>
+                        <option value="fire">fire</option>
+                        <option value="water">water</option>
+                        <option value="grass">grass</option>
+                        <option value="electric">electric</option>
+                        <option value="psychic">psychic</option>
+                        <option value="ice">ice</option>
+                        <option value="dragon">dragon</option>
+                        <option value="dark">dark</option>
+                        <option value="fairy">fairy</option>
+                        <option value="shadow">shadow</option>
+                        <option value="unknown">unknown</option>
+                    </select>
+                </div>
+                
+                <div className="filter">
+                    <select onChange={e => handleSortStrength(e)}>
+                        <option defaultValue>Attack</option>
+                        <option value="high">Higher attack</option>
+                        <option value="low">Lower attack</option>
+                    </select>
+                </div>
+                
+                <div className="filter">
+                    <select onChange={e => handleFilterOrigin(e)}>
+                        <option defaultValue>Origin</option>
+                        <option value="all">All</option>
+                        <option value="api">From API</option>
+                        <option value="cre">Created</option>
+                    </select>
+                </div>
+                
 
                 <Paging 
                     pokemonsXPg={pokemonsXPg}
                     allPokemons={allPokemons.length}
                     paging={paging}
                 />
-
-                <SearchBar />
 
                 { // reviso si hay pokemones y luego con el map voy pasando las props que necesito para la Card por cada pokemon
                 currentPokemons?.map(e => {
