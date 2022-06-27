@@ -1,12 +1,80 @@
 import React from "react";
+import './Card.css'
 
-const Card = ({ image, name, types }) => {
+const Card = () => {
     return (
-        <div>
-            <img src={image} alt="not found" />
-            <h3>{name}</h3>
-            <div>{types.map(e => <h4>{e}</h4>)}
+        <div className="card-container">
+            
+            <div className="card">
+                <div>
+                    <h2>Pikachu</h2>
+                    <div className="types">
+                        <h3>Poison</h3>
+                        <h3>Fire</h3>
+                    </div>
+                </div>
+                <img src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/6.svg' alt="not found" />
             </div>
+            
+            
+            <div className="card">
+                <div>
+                    <h2>Pikachu</h2>
+                    <div className="types">
+                        <h3>Poison</h3>
+                        <h3>Fire</h3>
+                    </div>
+                </div>
+                <img src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg' alt="not found" />
+            </div>
+            
+            
+            <div className="card">
+                <div>
+                    <h2>Pikachu</h2>
+                    <div className="types">
+                        <h3>Poison</h3>
+                        <h3>Fire</h3>
+                    </div> 
+                </div>
+                <img src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/10.svg' alt="not found" />
+            </div>
+            
+            <div className="card">
+                <div>
+                    <h2>Pikachu</h2>
+                    <div className="types">
+                        <h3>Poison</h3>
+                        <h3>Fire</h3>
+                    </div>
+                </div>
+                <img src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/6.svg' alt="not found" />
+            </div>
+            
+            
+            <div className="card">
+                <div>
+                    <h2>Pikachu</h2>
+                    <div className="types">
+                        <h3>Poison</h3>
+                        <h3>Fire</h3>
+                    </div>
+                </div>
+                <img src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg' alt="not found" />
+            </div>
+            
+            
+            <div className="card">
+                <div>
+                    <h2>Pikachu</h2>
+                    <div className="types">
+                        <h3>Poison</h3>
+                        <h3>Fire</h3>
+                    </div> 
+                </div>
+                <img src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/10.svg' alt="not found" />
+            </div>
+            
         </div>
     )
 }

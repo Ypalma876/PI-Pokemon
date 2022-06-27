@@ -1,0 +1,72 @@
+.home-button {
+    font-family: monospace;
+    font-size: 25px;
+    font-weight: bold;
+    border-radius: 60px;
+    background-color: #e76b6b;
+    color: #03192e;
+    padding: 5px 10px 5px 10px;
+    cursor: pointer;
+    margin: 15px 0 0 15px;
+}
+
+.home-button:hover {
+    background-color: #ffcd05e0;
+    color: #2a75bb;
+}
+
+.create-container h1 {
+    font-size: 50px;
+    font-family: monospace;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    background: linear-gradient(90deg, #ffcb05, red);
+
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+}
+
+.create-form {
+    max-width: 400px;
+	background-color: rgba(238, 238, 238, 0.5);
+	margin: auto;
+	box-shadow: 0 3px 15px rgba(100, 100, 100, 0.5);
+	padding: 20px;
+	text-align:center;
+	border-radius: 1rem;
+	font-family: monospace;
+    font-size: 19px;
+}
+
+.create-form button {
+    font-family: monospace;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 60px;
+    background-color: #e76b6b;
+    color: #03192e;
+    padding: 5px 10px 5px 10px;
+    cursor: pointer;
+}
+
+.create-form button:hover {
+    background-color: #ffcd05e0;
+    color: #2a75bb;
+}
+
+.name-pokemon {
+    background-color: #03192ed3;
+    padding: 3px 0 3px 0;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    color: #e76b6b;
+    font-weight: bold;
+}
+
+.labels{
+    margin-bottom: 10px;
+    border-color: #03192e;
+}
+
+
