@@ -52,7 +52,16 @@ export default function Home () {
         dispatch(orderByStrength(event.target.value))
     }
 
-    return (
+    if (!allPokemons.length) {
+        return (
+            <div>
+                <img src="https://c.tenor.com/kodC8PAp4icAAAAi/pikachu-happy.gif" alt="Loading" />
+                <h3>Loading...</h3>
+            </div>
+        )
+    }
+    else {
+        return (
         <div className="home">
             <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/87044f58-c765-43c5-bc51-8613e3ac7ab1/ddew4m7-c69a2c41-518f-48ca-ba35-8ab1895464e0.png" alt="Pokemon!" />
 
@@ -118,36 +127,36 @@ export default function Home () {
                         <option value="api">From API</option>
                         <option value="cre">Created</option>
                     </select>
-                </div>
-                
+                </div>      
+            </div>
 
+            <div className="card-container">
+                    { // reviso si hay pokemones y luego con el map voy pasando las props que necesito para la Card por cada pokemon
+                        currentPokemons?.length > 0 ?
+                        currentPokemons?.map(e => {
+                            return (
+                                <Link to = {'/pokemon/'+e.id}  >
+                                    <div>
+                                        <Card name={e.name} image={e.image} types={e.types}/>
+                                    </div>
+                                </Link>
+                            )})
+                        : null                    
+                    }
+                </div>
+            
+            <div>
                 <Paging 
                     pokemonsXPg={pokemonsXPg}
                     allPokemons={allPokemons.length}
                     paging={paging}
                 />
-
-                { // reviso si hay pokemones y luego con el map voy pasando las props que necesito para la Card por cada pokemon
-                currentPokemons?.map(e => {
-                    return (
-                        <Link to = {'/pokemon/:'+e.id}  >
-                            <div className="card-container">
-                                <Card name={e.name} image={e.image} types={e.types}/>
-                            </div>
-                        </Link>
-                    )})
-                }
-
-                
-
             </div>
-            <div className="card-container">
-                <Link to ='/detail/'  >
-                    <Card />
-                </Link>   
-            </div>
-            
+    
 
         </div>
     )
+    }
+
+    
 }

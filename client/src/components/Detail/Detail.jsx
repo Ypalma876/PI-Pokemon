@@ -14,6 +14,7 @@ const Detail = () => {
     }, [dispatch])
 
     const pokemon = useSelector((state) => state.detail)
+    console.log(pokemon)
 
     return (
         <div className="detail-container">
@@ -23,22 +24,23 @@ const Detail = () => {
             {
                 pokemon?.length > 0 ? 
                     <div className="detail">
-                        <h1>{pokemon.name}</h1>
-                        <img src="{pokemon.image}" alt="img not found" />
+                        <h1>{pokemon[0].name}</h1>
+                        <p>#{pokemon[0].id}</p>
+                        <img src={pokemon[0].image} alt= {pokemon[0].name} />
                         <div>
-                            {pokemon.types.map((e) => {
-                                return ( <h3>{pokemon.createdInDB ? e.name : e}</h3> )
+                            {pokemon[0].types?.map((e) => {
+                                return ( <h3>{pokemon[0].createdInDB ? e.name : e}</h3> )
                             })}
                         </div>
                         <div className="stats">
-                            <p>Hp: {pokemon.hp}</p>
-                            <p>Attack: {pokemon.attack}</p>
-                            <p>Defense: {pokemon.defense}</p>
+                            <p>Hp: {pokemon[0].hp}</p>
+                            <p>Attack: {pokemon[0].attack}</p>
+                            <p>Defense: {pokemon[0].defense}</p>
                         </div>
                         <div className="stats">
-                            <p>Speed: {pokemon.speed}</p>
-                            <p>Height: {pokemon.height} cm</p>
-                            <p>Weight: {pokemon.weight} g</p>
+                            <p>Speed: {pokemon[0].speed}</p>
+                            <p>Height: {pokemon[0].height} cm</p>
+                            <p>Weight: {pokemon[0].weight} g</p>
                         </div>
                     </div> 
                 : <div><p>Loading...</p></div>

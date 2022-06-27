@@ -12,9 +12,11 @@ const Paging = ({ pokemonsXPg, allPokemons, paging }) => {
             <ul>
                 {
                     pageNums && pageNums.map(num => {
-                        <li key={num}>
+                        return (
+                            <li key={num}>
                             <a onClick={() => paging(num)}>{num}</a>
                         </li>  
+                        )  
                     })
                 }
             </ul>
