@@ -145,7 +145,7 @@ export default function Home () {
                     }
                 </div>
             
-            <div>
+            <div className="page">
                 <Paging 
                     pokemonsXPg={pokemonsXPg}
                     allPokemons={allPokemons.length}

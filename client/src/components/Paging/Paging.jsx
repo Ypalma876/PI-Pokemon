@@ -1,4 +1,5 @@
 import React from "react";
+import './paging.css'
 
 const Paging = ({ pokemonsXPg, allPokemons, paging }) => {
     const pageNums = [];
@@ -8,14 +9,14 @@ const Paging = ({ pokemonsXPg, allPokemons, paging }) => {
     }
 
     return (
-        <nav>
+        <nav className="paging">
             <ul>
                 {
                     pageNums && pageNums.map(num => {
                         return (
                             <li key={num}>
-                            <a onClick={() => paging(num)}>{num}</a>
-                        </li>  
+                                <a onClick={() => paging(num)}>{num}</a>
+                            </li>  
                         )  
                     })
                 }

@@ -1,0 +1,19 @@
+.paging {
+    display: inline-block;
+    text-align: center;
+}
+
+.paging ul {
+    list-style: none;
+    display: flex;
+    text-align: center;
+    gap: 20px;
+    background-color:aquamarine;
+    padding: 6px 30px 6px 30px;
+    border-radius: 50px;
+}
+
+.paging ul li {
+    font-family: monospace;
+    font-size: 25px;
+}
