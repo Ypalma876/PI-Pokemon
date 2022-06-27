@@ -142,7 +142,9 @@ export default function Home () {
 
             </div>
             <div className="card-container">
-                <Card />
+                <Link to ='/detail/'  >
+                    <Card />
+                </Link>   
             </div>
             
 
