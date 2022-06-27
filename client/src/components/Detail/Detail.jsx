@@ -21,7 +21,7 @@ const Detail = () => {
                 <button>Home</button>
             </Link>
             {
-                pokemon.length > 0 ? 
+                pokemon?.length > 0 ? 
                     <div className="detail">
                         <h1>{pokemon.name}</h1>
                         <img src="{pokemon.image}" alt="img not found" />

@@ -128,14 +128,14 @@ export default function Home () {
                 />
 
                 { // reviso si hay pokemones y luego con el map voy pasando las props que necesito para la Card por cada pokemon
-                // currentPokemons?.map(e => {
-                //     return (
-                //         <Link to = {'/detail/'+e.id}  >
-                //             <div >
-                //                 <Card name={e.name} image={e.image} types={e.types}/>
-                //             </div>
-                //         </Link>
-                //     )})
+                currentPokemons?.map(e => {
+                    return (
+                        <Link to = {'/pokemon/:'+e.id}  >
+                            <div className="card-container">
+                                <Card name={e.name} image={e.image} types={e.types}/>
+                            </div>
+                        </Link>
+                    )})
                 }
 
                 
