@@ -70,23 +70,8 @@ const allPokemons = async () => {
     
 }
 
-// Search pokemon by ID
-const getPokemonByID = async (id) => {
-    try {
-        const pokemonList = await allPokemons();
-
-        if (id) {
-            const pokemonByID = pokemonList.filter(p => p.id === id);
-            return pokemonByID;
-        }
-    } catch (error) {
-        throw new Error(error)
-    }
-}
-
 module.exports = {
     getDataApi,
     getDataDB,
     allPokemons,
-    getPokemonByID
 }
