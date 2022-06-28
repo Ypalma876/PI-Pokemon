@@ -52,15 +52,15 @@ export default function Home () {
         dispatch(orderByStrength(event.target.value))
     }
 
-    if (!allPokemons.length) {
-        return (
-            <div>
-                <img src="https://c.tenor.com/kodC8PAp4icAAAAi/pikachu-happy.gif" alt="Loading" />
-                <h3>Loading...</h3>
-            </div>
-        )
-    }
-    else {
+    // if (!allPokemons.length) {
+    //     return (
+    //         <div className="loading">
+    //             <img src="https://c.tenor.com/kodC8PAp4icAAAAi/pikachu-happy.gif" alt="Loading" />
+    //             <h3>Loading...</h3>
+    //         </div>
+    //     )
+    // }
+    // else {
         return (
         <div className="home">
             <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/87044f58-c765-43c5-bc51-8613e3ac7ab1/ddew4m7-c69a2c41-518f-48ca-ba35-8ab1895464e0.png" alt="Pokemon!" />
@@ -156,7 +156,5 @@ export default function Home () {
 
         </div>
     )
-    }
-
-    
+    // }
 }

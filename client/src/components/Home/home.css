@@ -61,3 +61,8 @@
     display: flex;
     justify-content: center;
 }
+
+.loading {
+    margin: auto;
+    display: block;
+}
