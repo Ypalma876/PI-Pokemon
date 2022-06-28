@@ -42,8 +42,11 @@ const Detail = () => {
                             <p>Height: {pokemon[0].height} cm</p>
                             <p>Weight: {pokemon[0].weight} g</p>
                         </div>
-                    </div> 
-                : <div><p>Loading...</p></div>
+                    </div> :
+                    <div className="loading">
+                        <img src="https://c.tenor.com/kodC8PAp4icAAAAi/pikachu-happy.gif" alt="Loading" />
+                        <h3>Loading...</h3>
+                    </div>
             }
         </div>
     )
