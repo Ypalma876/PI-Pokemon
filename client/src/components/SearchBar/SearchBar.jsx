@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { getNamePokemons } from "../../actions";
+import { getNamePokemons } from "../../actions/index";
 import './SearchBar.css'
 
 const SearchBar = () => {
